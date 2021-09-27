@@ -1,0 +1,40 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"outDir": "./dist",
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"target": "ES2018",
+		"sourceMap": true,
+		"lib": [
+			"es7",
+			"dom",
+			"esnext.asynciterable"
+		],
+		"typeRoots": [
+			"./node_modules/@types"
+		],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"declaration": false,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictPropertyInitialization": false,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noImplicitReturns": true
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"include": [
+		"src/**/*.ts"
+	]
+}
