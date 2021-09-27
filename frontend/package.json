@@ -7,8 +7,14 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.8",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
+    "framer-motion": "4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-use": "^17.3.1",
+    "tstl": "^2.5.0",
     "yarn": "^1.22.11"
   },
   "devDependencies": {
