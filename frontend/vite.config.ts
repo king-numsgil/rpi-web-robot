@@ -11,6 +11,10 @@ export default defineConfig({
 				target: "http://localhost:8080/api",
 				changeOrigin: true,
 			},
+			"/socket.io": {
+				target: "http://localhost:8080/socket.io",
+				changeOrigin: true,
+			},
 		},
 	},
 	plugins: [
