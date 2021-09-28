@@ -1,10 +1,17 @@
-import {Box, Text} from "@chakra-ui/react";
-import {VFC} from "react";
+import {Flex, Spacer, Text} from "@chakra-ui/react";
+import {useState, VFC} from "react";
+
+import Joystick from "./joystick";
 
 const App: VFC = () => {
-	return <Box>
-		<Text>Hello</Text>
-	</Box>;
+	const [joyValue, setJoyValue] = useState<string>("Hello");
+	return <>
+		<Flex direction="column" h="100vh">
+			<Text>{joyValue}</Text>
+			<Spacer />
+		</Flex>
+		<Joystick onJoyInput={value => setJoyValue(`Joy X: ${value.x} Y:${value.y}`)} />
+	</>;
 };
 
 export default App;
