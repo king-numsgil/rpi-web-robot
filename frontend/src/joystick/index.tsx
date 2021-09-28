@@ -18,7 +18,7 @@ type JoystickProps = {
 	onJoyInput: (value: JoyValue) => void;
 }
 
-const Joystick: VFC<JoystickProps> = props => {
+export const Joystick: VFC<JoystickProps> = props => {
 	const {onJoyInput} = props;
 
 	const [isActive, setActive] = useState<boolean>(false);
@@ -144,5 +144,3 @@ const Joystick: VFC<JoystickProps> = props => {
 		</Box>
 	</Box>;
 };
-
-export default Joystick;
