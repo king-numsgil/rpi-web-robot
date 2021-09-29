@@ -87,7 +87,7 @@ export const Joystick: VFC<JoystickProps> = props => {
 			const yPosition2 = distance2 * Math.sin(angle);
 			const xPercent = parseFloat((xPosition2 / maxDistance).toFixed(4));
 			const yPercent = parseFloat((yPosition2 / maxDistance).toFixed(4));
-			onJoyInput({x: xPercent, y: yPercent});
+			onJoyInput({x: xPercent, y: -yPercent});
 		}
 	};
 
