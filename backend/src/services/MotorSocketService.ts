@@ -18,30 +18,11 @@ export class MotorSocketService {
 
 		let right: number = 0, left: number = 0;
 
-		if (data.x < 0) {
-			right = 1;
-			left = -1;
-		}
-		if (data.x > 0) {
-			right = -1;
-			left = 1;
-		}
+		left = data.x * Math.sqrt(2) / 2 + data.y * Math.sqrt(2) / 2;
+    	right = -data.x * Math.sqrt(2) / 2 + data.y * Math.sqrt(2) / 2;
 
-		if (right === 0) {
-			this.hat.motor(0).stop();
-		} else if (right > 0) {
-			this.hat.motor(0).forward(Math.round(right * 100));
-		} else {
-			this.hat.motor(0).backward(Math.round(-right * 100));
-		}
-
-		if (left === 0) {
-			this.hat.motor(1).stop();
-		} else if (left > 0) {
-			this.hat.motor(1).forward(Math.round(left * 100));
-		} else {
-			this.hat.motor(1).backward(Math.round(-left * 100));
-		}
+		this.hat.motor(0).move(Math.round(right * 100));
+		this.hat.motor(1).move(Math.round(left * 100));
 	}
 
 	@Input("hi")

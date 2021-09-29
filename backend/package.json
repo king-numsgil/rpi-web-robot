@@ -5,7 +5,8 @@
 	"scripts": {
 		"tsc": "tsc --project tsconfig.json",
 		"tsc:w": "tsc -w --project tsconfig.json",
-		"start": "nodemon --watch \"dist/**/*.js\" --ignore \"node_modules/**/*\" --exec node ./dist/index.js"
+		"dev": "nodemon --watch \"dist/**/*.js\" --ignore \"node_modules/**/*\" --exec node ./dist/index.js",
+		"start": "node ./dist/index.js"
 	},
 	"dependencies": {
 		"@tsed/common": "^6.71.1",

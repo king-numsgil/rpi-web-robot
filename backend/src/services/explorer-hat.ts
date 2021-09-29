@@ -44,6 +44,16 @@ class Motor {
 		this.speed = 0;
 	}
 
+	move(speed: number) {
+		if (speed === 0) {
+			this.stop();
+		} else if (speed > 0) {
+			this.forward(speed);
+		} else {
+			this.backward(-speed);
+		}
+	}
+
 	forward(speed: number) {
 		if (speed < 0 || speed > 100) {
 			throw new Error("Speed must be between 0 and 100");
