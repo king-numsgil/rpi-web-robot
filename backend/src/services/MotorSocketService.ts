@@ -14,12 +14,8 @@ export class MotorSocketService {
 
 	@Input("input")
 	motorMove(@Args(0) data: MotorInput) {
-		const length = Math.sqrt((data.x * data.x) + (data.y * data.y));
-
-		let right: number = 0, left: number = 0;
-
-		left = data.x * Math.sqrt(2) / 2 + data.y * Math.sqrt(2) / 2;
-    	right = -data.x * Math.sqrt(2) / 2 + data.y * Math.sqrt(2) / 2;
+		const right = -data.x * Math.sqrt(2) / 2 + data.y * Math.sqrt(2) / 2;
+		const left = data.x * Math.sqrt(2) / 2 + data.y * Math.sqrt(2) / 2;
 
 		this.hat.motor(0).move(Math.round(right * 100));
 		this.hat.motor(1).move(Math.round(left * 100));
