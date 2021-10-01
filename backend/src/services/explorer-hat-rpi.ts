@@ -1,3 +1,4 @@
+import {IExplorerHat, ILight, IMotor} from "./explorer-hat-interface";
 import {Gpio} from "pigpio";
 
 export const Pins = {
@@ -7,7 +8,7 @@ export const Pins = {
 	motor: [{pos: 19, neg: 20}, {pos: 21, neg: 26}],
 };
 
-class Light {
+class Light implements ILight {
 	private readonly pin: Gpio;
 
 	state: boolean;
@@ -28,7 +29,7 @@ class Light {
 	}
 }
 
-class Motor {
+class Motor implements IMotor {
 	private readonly pin_fw: Gpio;
 	private readonly pin_bw: Gpio;
 
@@ -81,7 +82,7 @@ class Motor {
 	}
 }
 
-export class ExplorerHat {
+export class ExplorerHat implements IExplorerHat {
 	private readonly lights: Array<Light>;
 	private readonly motors: Array<Motor>;
 
@@ -99,7 +100,7 @@ export class ExplorerHat {
 		];
 	}
 
-	sleep(ms: number) {
+	sleep(ms: number): Promise<void> {
 		return new Promise((resolve) => {
 			setTimeout(resolve, ms);
 		});

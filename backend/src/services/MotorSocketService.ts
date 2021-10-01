@@ -1,5 +1,13 @@
 import {Args, Input, Namespace, Socket, SocketService} from "@tsed/socketio";
-import {ExplorerHat} from "./explorer-hat";
+import {IExplorerHat} from "./explorer-hat-interface";
+
+const isDesktop: boolean = process.env.ROBOT_DESKTOP === "1";
+let ExplorerHat: new () => IExplorerHat;
+if (isDesktop) {
+	import("./explorer-hat-dummy").then(mod => ({ExplorerHat} = mod));
+} else {
+	import("./explorer-hat-rpi").then(mod => ({ExplorerHat} = mod));
+}
 
 export type MotorInput = {
 	x: number;
