@@ -1,4 +1,5 @@
 import {Controller, Get} from "@tsed/common";
+import hardware from "systeminformation";
 
 import {MotorSocketService} from "../services/MotorSocketService";
 
@@ -8,7 +9,7 @@ export class PiController {
 	}
 
 	@Get()
-	index() {
-		return "Yoo!! Fuck me!";
+	async index() {
+		return await hardware.system();
 	}
 }
