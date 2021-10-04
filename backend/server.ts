@@ -56,18 +56,16 @@ export class Server {
 			.use(bodyParser.urlencoded({
 				extended: true
 			}));
+	}
 
+	public async $afterRoutesInit() {
 		if (process.env.ROBOT_DESKTOP === "1") {
 			this.vite = await createViteServer({
 				server: {middlewareMode: "html"},
 			});
 
 			this.app.use(this.vite.middlewares);
-		}
-	}
-
-	public $afterRoutesInit() {
-		if (process.env.ROBOT_DESKTOP !== "1") {
+		} else {
 			this.app.get("*", (req: Req, res: Res) => {
 				res.sendFile(join(clientDir, "./dist/index.html"));
 			});
