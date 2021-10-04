@@ -2,8 +2,8 @@ import {Controller, Get} from "@tsed/common";
 
 import {MotorSocketService} from "../services/MotorSocketService";
 
-@Controller("/test")
-export class TestController {
+@Controller("/pi")
+export class PiController {
 	constructor(private motorService: MotorSocketService) {
 	}
 

@@ -1,12 +1,12 @@
 import {Args, Input, Namespace, Socket, SocketService} from "@tsed/socketio";
-import {IExplorerHat} from "./explorer-hat-interface";
+import {IExplorerHat} from "./hat/explorer-hat-interface";
 
 const isDesktop: boolean = process.env.ROBOT_DESKTOP === "1";
 let ExplorerHat: new () => IExplorerHat;
 if (isDesktop) {
-	import("./explorer-hat-dummy").then(mod => ({ExplorerHat} = mod));
+	import("./hat/explorer-hat-dummy").then(mod => ({ExplorerHat} = mod));
 } else {
-	import("./explorer-hat-rpi").then(mod => ({ExplorerHat} = mod));
+	import("./hat/explorer-hat-rpi").then(mod => ({ExplorerHat} = mod));
 }
 
 export type MotorInput = {
@@ -27,15 +27,5 @@ export class MotorSocketService {
 
 		this.hat.motor(0).move(Math.round(right * 100));
 		this.hat.motor(1).move(Math.round(left * 100));
-	}
-
-	@Input("hi")
-	hi(@Args(0) name: string, @Socket socket: Socket, @Namespace nsp: Namespace) {
-		console.log(`hi => ${name}`);
-		this.hello();
-	}
-
-	hello() {
-		this.nsp.emit("hello", "world");
 	}
 }
