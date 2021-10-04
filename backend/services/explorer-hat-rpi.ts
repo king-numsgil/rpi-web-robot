@@ -9,9 +9,8 @@ export const Pins = {
 };
 
 class Light implements ILight {
-	private readonly pin: Gpio;
-
 	state: boolean;
+	private readonly pin: Gpio;
 
 	constructor(index: number) {
 		this.pin = new Gpio(Pins.led[index], {mode: Gpio.OUTPUT}).digitalWrite(0);
@@ -30,10 +29,9 @@ class Light implements ILight {
 }
 
 class Motor implements IMotor {
+	speed: number;
 	private readonly pin_fw: Gpio;
 	private readonly pin_bw: Gpio;
-
-	speed: number;
 
 	constructor(index: number) {
 		this.pin_fw = new Gpio(Pins.motor[index].pos, {mode: Gpio.OUTPUT})

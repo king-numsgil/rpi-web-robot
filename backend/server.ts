@@ -1,4 +1,5 @@
-import {Configuration, Inject, PlatformApplication, Res} from "@tsed/common";
+import {Configuration, Inject, PlatformApplication, Req, Res} from "@tsed/common";
+import {createServer as createViteServer, ViteDevServer} from "vite";
 import methodOverride from "method-override";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
@@ -10,7 +11,7 @@ import "@tsed/socketio";
 const send = require("send");
 
 const rootDir = __dirname;
-const clientDir = join(rootDir, "../../frontend/dist");
+const clientDir = join(rootDir, "../frontend");
 
 function setCustomCacheControl(res: ServerResponse, path: string) {
 	if (send.mime.lookup(path) === "text/html") {
@@ -24,21 +25,18 @@ function setCustomCacheControl(res: ServerResponse, path: string) {
 	rootDir,
 	acceptMimes: ["application/json"],
 	statics: {
-		"/": [
-			{
-				root: clientDir,
-				maxAge: "1d",
-				setHeaders: setCustomCacheControl,
-			},
-		],
+		"/": process.env.ROBOT_DESKTOP !== "1" ? [{
+			root: join(clientDir, "./dist"),
+			maxAge: "1d",
+			setHeaders: setCustomCacheControl,
+		}] : [],
 	},
 	mount: {
 		"/api": [
 			`${rootDir}/controllers/**/*.ts`,
 		],
 	},
-	socketIO: {
-	},
+	socketIO: {},
 })
 export class Server {
 	@Inject()
@@ -47,7 +45,9 @@ export class Server {
 	@Configuration()
 	settings: Configuration;
 
-	public $beforeRoutesInit(): void | Promise<any> {
+	vite: ViteDevServer | null = null;
+
+	public async $beforeRoutesInit(): Promise<any> {
 		this.app
 			.use(cookieParser())
 			.use(compress({}))
@@ -56,11 +56,21 @@ export class Server {
 			.use(bodyParser.urlencoded({
 				extended: true
 			}));
+
+		if (process.env.ROBOT_DESKTOP === "1") {
+			this.vite = await createViteServer({
+				server: {middlewareMode: "html"},
+			});
+
+			this.app.use(this.vite.middlewares);
+		}
 	}
 
 	public $afterRoutesInit() {
-		this.app.get("*", (req: any, res: Res) => {
-			res.sendFile(join(clientDir, "index.html"));
-		});
+		if (process.env.ROBOT_DESKTOP !== "1") {
+			this.app.get("*", (req: Req, res: Res) => {
+				res.sendFile(join(clientDir, "./dist/index.html"));
+			});
+		}
 	}
 }

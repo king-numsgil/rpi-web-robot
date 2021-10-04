@@ -2,10 +2,12 @@ import {Flex, Spacer, Text} from "@chakra-ui/react";
 import {io, Socket} from "socket.io-client";
 import {VFC} from "react";
 
-import {JoyValue, Joystick} from "./joystick";
+import {Joystick, JoyValue} from "./joystick";
 
 let ready: boolean = false;
-let socket: Socket = io("/motor").on("connect", () => {
+let socket: Socket = io("/motor", {
+	transports: ["websocket"],
+}).on("connect", () => {
 	ready = true;
 	console.log("CONNECTED");
 }).on("disconnect", () => {

@@ -1,9 +1,15 @@
 {
 	"compilerOptions": {
-		"types": ["vite/client"],
-		"baseUrl": "./src",
+		"types": [
+			"vite/client"
+		],
+		"baseUrl": "./frontend",
 		"target": "ESNext",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
 		"importHelpers": true,
 		"allowJs": false,
 		"skipLibCheck": true,
@@ -16,7 +22,6 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-
 		"strict": true,
 		"noImplicitAny": true,
 		"strictNullChecks": true,
@@ -28,5 +33,7 @@
 		"noUnusedParameters": false,
 		"noImplicitReturns": true
 	},
-	"include": ["./src"]
+	"include": [
+		"./frontend"
+	]
 }
