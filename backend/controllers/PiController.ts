@@ -9,7 +9,40 @@ export class PiController {
 	}
 
 	@Get()
-	async index() {
-		return await hardware.system();
+	async system() {
+		return {
+			system: await hardware.system(),
+			baseboard: await hardware.baseboard(),
+		};
+	}
+
+	@Get("/cpu")
+	async cpu() {
+		return await hardware.cpu();
+	}
+
+	@Get("/cpu/speed")
+	async cpuSpeed() {
+		return await hardware.cpuCurrentSpeed();
+	}
+
+	@Get("/cpu/temp")
+	async cpuTemp() {
+		return await hardware.cpuTemperature();
+	}
+
+	@Get("/cpu/load")
+	async cpuLoad() {
+		return await hardware.currentLoad();
+	}
+
+	@Get("/mem")
+	async mem() {
+		return await hardware.mem();
+	}
+
+	@Get("/net")
+	async network() {
+		return await hardware.networkStats();
 	}
 }
