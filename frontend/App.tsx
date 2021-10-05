@@ -1,8 +1,9 @@
-import {Flex, Spacer, Text} from "@chakra-ui/react";
+import {Flex, Spacer} from "@chakra-ui/react";
 import {io, Socket} from "socket.io-client";
 import {VFC} from "react";
 
 import {Joystick, JoyValue} from "./joystick";
+import {HardwareInfo} from "./hardware";
 
 let ready: boolean = false;
 let socket: Socket = io("/motor", {
@@ -24,7 +25,7 @@ const App: VFC = () => {
 
 	return <>
 		<Flex direction="column" h="100vh">
-			<Text>Hello</Text>
+			<HardwareInfo/>
 			<Spacer />
 		</Flex>
 		<Joystick onJoyInput={sendJoyValue} />
