@@ -16,17 +16,6 @@ const CpuInfo: VFC<CpuInfoProps> = ({data}) => {
 	</>;
 };
 
-type CpuSpeedProps = {
-	data: hardware.Systeminformation.CpuCurrentSpeedData;
-};
-
-const CpuSpeed: VFC<CpuSpeedProps> = ({data}) => {
-	return <>
-		<Text>Avg: {data.avg}GHz; Min: {data.min}GHz; Max: {data.max}GHz</Text>
-		{data.cores.map((core, index) => <Text>Core #{index}: {core}GHz</Text>)}
-	</>;
-}
-
 type CpuTempProps = {
 	data: hardware.Systeminformation.CpuTemperatureData;
 };
@@ -78,15 +67,11 @@ export const Cpu: VFC = () => {
 	const {data: cpuLoad} = useSwr<hardware.Systeminformation.CurrentLoadData>("/api/pi/cpu/load", fetcher, {
 		refreshInterval: 1000,
 	});
-	const {data: cpuSpeed} = useSwr<hardware.Systeminformation.CpuCurrentSpeedData>("/api/pi/cpu/speed", fetcher, {
-		refreshInterval: 1000,
-	});
 	const {data: cpuInfo} = useSwr<hardware.Systeminformation.CpuData>("/api/pi/cpu", fetcher);
 
 	return <Tabs isFitted>
 		<TabList>
 			<Tab>Info</Tab>
-			<Tab>Speeds</Tab>
 			<Tab>Temperatures</Tab>
 			<Tab>Load</Tab>
 		</TabList>
@@ -94,10 +79,6 @@ export const Cpu: VFC = () => {
 			<TabPanel>
 				{!cpuInfo && <Spinner />}
 				{cpuInfo && <CpuInfo data={cpuInfo} />}
-			</TabPanel>
-			<TabPanel>
-				{!cpuSpeed && <Spinner />}
-				{cpuSpeed && <CpuSpeed data={cpuSpeed} />}
 			</TabPanel>
 			<TabPanel>
 				{!cpuTemps && <Spinner />}
