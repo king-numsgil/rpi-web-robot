@@ -78,7 +78,9 @@ export const Cpu: VFC = () => {
 	const {data: cpuLoad} = useSwr<hardware.Systeminformation.CurrentLoadData>("/api/pi/cpu/load", fetcher, {
 		refreshInterval: 1000,
 	});
-	const {data: cpuSpeed} = useSwr<hardware.Systeminformation.CpuCurrentSpeedData>("/api/pi/cpu/speed", fetcher);
+	const {data: cpuSpeed} = useSwr<hardware.Systeminformation.CpuCurrentSpeedData>("/api/pi/cpu/speed", fetcher, {
+		refreshInterval: 1000,
+	});
 	const {data: cpuInfo} = useSwr<hardware.Systeminformation.CpuData>("/api/pi/cpu", fetcher);
 
 	return <Tabs isFitted>
