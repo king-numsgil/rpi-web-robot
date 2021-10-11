@@ -6,6 +6,8 @@ import {System} from "./system";
 import {Memory} from "./memory";
 import {Cpu} from "./cpu";
 
+export const fetcher = (input: RequestInfo, init?:RequestInit) => fetch(input, init).then(res => res.json());
+
 export const HardwareInfo: VFC = () => {
 	return <Tabs isFitted>
 		<TabList>

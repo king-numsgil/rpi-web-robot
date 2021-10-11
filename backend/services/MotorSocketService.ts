@@ -1,4 +1,4 @@
-import {Args, Input, Namespace, Socket, SocketService} from "@tsed/socketio";
+import {Args, Input, Namespace, SocketService} from "@tsed/socketio";
 import {IExplorerHat} from "./hat/explorer-hat-interface";
 
 const isDesktop: boolean = process.env.ROBOT_DESKTOP === "1";
