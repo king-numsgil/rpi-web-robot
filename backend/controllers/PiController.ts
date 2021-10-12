@@ -21,11 +21,6 @@ export class PiController {
 		return await hardware.cpu();
 	}
 
-	@Get("/cpu/speed")
-	async cpuSpeed() {
-		return await hardware.cpuCurrentSpeed();
-	}
-
 	@Get("/cpu/temp")
 	async cpuTemp() {
 		return await hardware.cpuTemperature();
