@@ -6,7 +6,7 @@ import {System} from "./system";
 import {Memory} from "./memory";
 import {Cpu} from "./cpu";
 
-export const fetcher = (input: RequestInfo, init?:RequestInit) => fetch(input, init).then(res => res.json());
+export const fetcher = (input: RequestInfo, init?: RequestInit) => fetch(input, init).then(res => res.json());
 
 export const HardwareInfo: VFC = () => {
 	return <Tabs isFitted>
@@ -17,10 +17,10 @@ export const HardwareInfo: VFC = () => {
 			<Tab>Network</Tab>
 		</TabList>
 		<TabPanels>
-			<TabPanel><System/></TabPanel>
-			<TabPanel><Cpu/></TabPanel>
-			<TabPanel><Memory/></TabPanel>
-			<TabPanel><Network/></TabPanel>
+			<TabPanel><System /></TabPanel>
+			<TabPanel><Cpu /></TabPanel>
+			<TabPanel><Memory /></TabPanel>
+			<TabPanel><Network /></TabPanel>
 		</TabPanels>
 	</Tabs>;
 };

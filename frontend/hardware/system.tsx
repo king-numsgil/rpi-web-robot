@@ -18,9 +18,11 @@ export const System: VFC = () => {
 	} else {
 		return <>
 			<Text fontWeight="bold">System</Text>
-			<Text>Manufacturer: {data.system.manufacturer}; Model: {data.system.model}; Version: {data.system.version}</Text>
+			<Text>Manufacturer: {data.system.manufacturer}; Model: {data.system.model};
+				Version: {data.system.version}</Text>
 			<Text fontWeight="bold">Baseboard</Text>
-			<Text>Manufacturer: {data.baseboard.manufacturer}; Model: {data.baseboard.model}; Version: {data.baseboard.version}</Text>
+			<Text>Manufacturer: {data.baseboard.manufacturer}; Model: {data.baseboard.model};
+				Version: {data.baseboard.version}</Text>
 		</>;
 	}
 };

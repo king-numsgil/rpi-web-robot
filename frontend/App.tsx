@@ -25,7 +25,7 @@ const App: VFC = () => {
 
 	return <>
 		<Flex direction="column" h="100vh">
-			<HardwareInfo/>
+			<HardwareInfo />
 			<Spacer />
 		</Flex>
 		<Joystick onJoyInput={sendJoyValue} />
