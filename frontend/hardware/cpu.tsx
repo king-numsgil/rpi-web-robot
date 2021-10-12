@@ -1,12 +1,12 @@
 import {Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text} from "@chakra-ui/react";
-import hardware from "systeminformation";
+import {Systeminformation} from "systeminformation";
 import {VFC} from "react";
 import useSwr from "swr";
 
 import {fetcher} from "./";
 
 type CpuInfoProps = {
-	data: hardware.Systeminformation.CpuData;
+	data: Systeminformation.CpuData;
 };
 
 const CpuInfo: VFC<CpuInfoProps> = ({data}) => {
@@ -17,7 +17,7 @@ const CpuInfo: VFC<CpuInfoProps> = ({data}) => {
 };
 
 type CpuTempProps = {
-	data: hardware.Systeminformation.CpuTemperatureData;
+	data: Systeminformation.CpuTemperatureData;
 };
 
 const CpuTemp: VFC<CpuTempProps> = ({data}) => {
@@ -28,7 +28,7 @@ const CpuTemp: VFC<CpuTempProps> = ({data}) => {
 }
 
 type CpuLoadProps = {
-	data: hardware.Systeminformation.CurrentLoadData;
+	data: Systeminformation.CurrentLoadData;
 };
 
 const CpuLoad: VFC<CpuLoadProps> = ({data}) => {
@@ -61,13 +61,13 @@ const CpuLoad: VFC<CpuLoadProps> = ({data}) => {
 }
 
 export const Cpu: VFC = () => {
-	const {data: cpuTemps} = useSwr<hardware.Systeminformation.CpuTemperatureData>("/api/pi/cpu/temp", fetcher, {
+	const {data: cpuTemps} = useSwr<Systeminformation.CpuTemperatureData>("/api/pi/cpu/temp", fetcher, {
 		refreshInterval: 1000,
 	});
-	const {data: cpuLoad} = useSwr<hardware.Systeminformation.CurrentLoadData>("/api/pi/cpu/load", fetcher, {
+	const {data: cpuLoad} = useSwr<Systeminformation.CurrentLoadData>("/api/pi/cpu/load", fetcher, {
 		refreshInterval: 1000,
 	});
-	const {data: cpuInfo} = useSwr<hardware.Systeminformation.CpuData>("/api/pi/cpu", fetcher);
+	const {data: cpuInfo} = useSwr<Systeminformation.CpuData>("/api/pi/cpu", fetcher);
 
 	return <Tabs isFitted>
 		<TabList>

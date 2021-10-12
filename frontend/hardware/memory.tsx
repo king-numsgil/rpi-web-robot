@@ -1,12 +1,12 @@
 import {Spinner, Text} from "@chakra-ui/react";
-import hardware from "systeminformation";
+import {Systeminformation} from "systeminformation";
 import {VFC} from "react";
 import useSwr from "swr";
 
 import {fetcher} from "./";
 
 export const Memory: VFC = () => {
-	const {data} = useSwr<hardware.Systeminformation.MemData>("/api/pi/mem", fetcher, {
+	const {data} = useSwr<Systeminformation.MemData>("/api/pi/mem", fetcher, {
 		refreshInterval: 1000,
 	});
 

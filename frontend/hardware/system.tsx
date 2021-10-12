@@ -1,13 +1,13 @@
+import {Systeminformation} from "systeminformation";
 import {Spinner, Text} from "@chakra-ui/react";
-import hardware from "systeminformation";
 import {VFC} from "react";
 import useSwr from "swr";
 
 import {fetcher} from "./";
 
 type SystemInfo = {
-	system: hardware.Systeminformation.SystemData;
-	baseboard: hardware.Systeminformation.BaseboardData;
+	system: Systeminformation.SystemData;
+	baseboard: Systeminformation.BaseboardData;
 }
 
 export const System: VFC = () => {

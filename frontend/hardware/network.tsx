@@ -1,12 +1,12 @@
 import {Spinner, Text} from "@chakra-ui/react";
-import hardware from "systeminformation";
+import {Systeminformation} from "systeminformation";
 import {VFC} from "react";
 import useSwr from "swr";
 
 import {fetcher} from "./";
 
 export const Network: VFC = () => {
-	const {data} = useSwr<Array<hardware.Systeminformation.NetworkStatsData>>("/api/pi/net", fetcher, {
+	const {data} = useSwr<Array<Systeminformation.NetworkStatsData>>("/api/pi/net", fetcher, {
 		refreshInterval: 1000,
 	});
 
